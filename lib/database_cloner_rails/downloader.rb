@@ -1,19 +1,26 @@
+require "fileutils"
+require "json"
+
 module DatabaseClonerRails
   class Downloader
-    def self.run(dump_dir: default_dump_dir)
-      new(dump_dir: dump_dir).run
+    def self.run(dump_dir: default_dump_dir, only: nil)
+      new(dump_dir: dump_dir, only: only).run
     end
 
     def self.default_dump_dir
       File.join(Rails.root, "lib", "tasks", "database_cloner", "db_dump")
     end
 
-    def initialize(dump_dir: self.class.default_dump_dir)
+    def initialize(dump_dir: self.class.default_dump_dir, only: nil)
       @dump_dir = dump_dir
+      @only     = Array(only).map(&:to_s).reject(&:empty?)
     end
 
     def run
-      ActiveRecord::Base.connection.tables.each do |table|
+      FileUtils.mkdir_p(@dump_dir)
+      tables = ActiveRecord::Base.connection.tables
+      tables = tables.select { |t| @only.include?(t) } if @only.any?
+      tables.each do |table|
         model = table.classify.safe_constantize
         next unless model.present?
         dump_table(table, model)

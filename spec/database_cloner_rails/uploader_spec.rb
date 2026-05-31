@@ -39,5 +39,34 @@ RSpec.describe DatabaseClonerRails::Uploader do
         uploader.run
       end
     end
+
+    context "with only: filtering" do
+      before do
+        allow(ActiveRecord::Base).to receive_message_chain(:connection, :tables).and_return(["users", "posts"])
+        stub_const("User", double("User", present?: true))
+        stub_const("Post", double("Post", present?: true))
+      end
+
+      it "only uploads tables listed in only:" do
+        uploader = described_class.new(only: ["users"])
+        expect(uploader).to receive(:require).with("tasks/database_cloner/db_dump/users").and_return(true)
+        expect(uploader).not_to receive(:require).with("tasks/database_cloner/db_dump/posts")
+        uploader.run
+      end
+
+      it "uploads all tables when only: is nil" do
+        uploader = described_class.new(only: nil)
+        expect(uploader).to receive(:require).with("tasks/database_cloner/db_dump/users").and_return(true)
+        expect(uploader).to receive(:require).with("tasks/database_cloner/db_dump/posts").and_return(true)
+        uploader.run
+      end
+
+      it "uploads all tables when only: is empty" do
+        uploader = described_class.new(only: [])
+        expect(uploader).to receive(:require).with("tasks/database_cloner/db_dump/users").and_return(true)
+        expect(uploader).to receive(:require).with("tasks/database_cloner/db_dump/posts").and_return(true)
+        uploader.run
+      end
+    end
   end
 end
