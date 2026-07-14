@@ -1,8 +1,11 @@
 # database-cloner-rails
 
+[![Gem Version](https://img.shields.io/gem/v/database-cloner-rails?logo=rubygems)](https://rubygems.org/gems/database-cloner-rails)
 [![Gem Downloads](https://img.shields.io/gem/dt/database-cloner-rails)](https://rubygems.org/gems/database-cloner-rails)
 
 A Rails gem that provides Rake tasks to back up and restore your database records across environments.
+
+**Tags:** rails, activerecord, database, rake-tasks, database-seeding, backup, restore, staging, fixtures, data-migration
 
 ## How it works
 
