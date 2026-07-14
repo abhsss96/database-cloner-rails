@@ -52,3 +52,10 @@ If a model's dump file fails to load, it prints a warning and continues with the
 - Only models that can be resolved via `classify.safe_constantize` are included.
 - Records are ordered by `id` during the dump.
 - The `db_dump/` directory must exist before running `database:download`.
+
+## Contributing
+
+A handful of enhancement ideas are tracked as open issues — see the
+[open issues](https://github.com/abhsss96/database-cloner-rails/issues) list. Some are
+tagged [`good first issue`](https://github.com/abhsss96/database-cloner-rails/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+if you're looking for a small, well-scoped place to start contributing.
