@@ -26,7 +26,8 @@ Gem::Specification.new do |spec|
     "homepage_uri"    => "https://github.com/abhsss96/database-cloner-rails",
     "source_code_uri" => "https://github.com/abhsss96/database-cloner-rails",
     "bug_tracker_uri" => "https://github.com/abhsss96/database-cloner-rails/issues",
-    "changelog_uri"   => "https://github.com/abhsss96/database-cloner-rails/releases"
+    "changelog_uri"   => "https://github.com/abhsss96/database-cloner-rails/releases",
+    "tags"            => "rails, activerecord, database, rake-tasks, database-seeding, backup, restore, staging, fixtures, data-migration"
   }
 
   spec.files         = Dir["lib/**/*", "README.md", "*.gemspec"]
