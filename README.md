@@ -1,5 +1,7 @@
 # database-cloner-rails
 
+[![Gem Downloads](https://img.shields.io/gem/dt/database-cloner-rails)](https://rubygems.org/gems/database-cloner-rails)
+
 A Rails gem that provides Rake tasks to back up and restore your database records across environments.
 
 ## How it works
